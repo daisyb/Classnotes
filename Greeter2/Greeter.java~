@@ -1,0 +1,9 @@
+public class Greeter {
+    public String greeting = new string("Hello World");
+    public void greet() {
+
+    }
+    public void ungreet() {
+	System.out.println("I'm out!");
+    }
+}
