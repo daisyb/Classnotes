@@ -1,0 +1,10 @@
+public class Greeter {
+
+    public Greeter(String g) {
+	greeting = g;
+    }
+	
+    public String greetperson(String name) {
+	return greeting + ' ' + name;
+    }
+}

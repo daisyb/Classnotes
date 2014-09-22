@@ -1,0 +1,6 @@
+public class Driver {
+    public static void main(String[] args){
+	Greeter g1 = new Greeter("Hey");
+	System.out.println(g1);
+    }
+}
