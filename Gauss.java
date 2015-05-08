@@ -1,7 +1,7 @@
 import java.util.Random;
 
 
-public class Gauss{
+public class Gauss implements compareTo{
     int[][] matrix;
     int col, row;
     Random rnd = new Random();
@@ -50,20 +50,48 @@ public class Gauss{
         }
      }
 
-    public boolean checkLeads(int[] a, int[] b){
-	for(int i=0;i<a.length && i<b.length;i++){
-	    if(a[i] = 0 && b[i] != 0){
-		return false;
+    public int leadIndex(int[] a){
+	for(int i = 0;i<a.length;i++){
+	    if(a[i] != 0){
+		return i;
 	    }
-	    if(a[i] = 
+	}
+	return a.length-1;
+    }
 
+
+    public int compareTo(Object o){
+	Int[] o = (Int[])o;
+	int i = leadIndex(o);
+	return leadIndex(this).compareTo(i);
+    }
+					 
+    
+    public void sort(){
+	int[] n;
+	for(int i =0;i<row.length;i++){
+	    for(int i=0;i+1<length;i++){
+		if(matrix[i].compareTo(matrix[i+1]) > 0){
+		    n = matrix[i];
+		    matrix[i] = data[i+1];
+		    data[i+1] = n;
+		}
+	    }
+	}
+    }
+
+
+		    
+    
     public int[][] reduce(){ 
-	for(int i=0;i<col;i++){
-	    for(int k=0;k<col;k++){
+	for(int i=0;i<row -1;i++){
+	    if(
 		
     }
 
-    /**
+
+
+	    /**
        fills the matriz for random values between 0 and maxVal
     **/
     public void randomMatrix(int maxVal){
