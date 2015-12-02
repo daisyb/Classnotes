@@ -35,7 +35,7 @@ public class Gauss{
     public int leadIndex(int r){
 	for(int i = 0;i<col;i++){
 
-	    if(matrix[r][i] < 0.0 || matrix[r][i] > 0.0){
+	    if(!isZero(matrix[r][i], Math.pow(10,-5))){
 		return i;
 	    }
 	}
@@ -48,9 +48,6 @@ public class Gauss{
     **/
     public void fillLeadIndices(){
 	for(int i = 0; i < matrix.length;i++){
-	    if(leadIndex(i) > 10){
-		System.out.println("whattheheahweothoiwehg");
-	    } 
 	    System.out.println(leadIndex(i));
 	    leadIndices[i] = leadIndex(i);
 	    System.out.print(leadIndices[i]);
@@ -82,27 +79,31 @@ public class Gauss{
         }
     }
 
-    /**
-        performs a sheer on row a by row b and a factor of c
-    **/
-    public void sheer(int a, int b, double c){
-        for(int i=0;i<row;i++){
-            matrix[a][i] += matrix[b][i] * c;
-	    leadIndices[a] = leadIndex(a);
-        }
-     }
+    // // /**
+    // //     performs a sheer on row a by row b and a factor of c
+    // // **/
+    // // public void sheer(int a, int b, double c){
+    // //     for(int i=0;i<row;i++){
+    // //         matrix[a][i] += matrix[b][i] * c;
+    // // 	    leadIndices[a] = leadIndex(a);
+    // //     }
+    // //  }
 		 
 
-    /**
-       sorts matrix rows by lead entries
-       leadIndices is used/exists to avoid looping through to find
-       the lead entry index every comparison
-    **/
-    public void sort(){
-	for(int i = 0; i < row-1; i++){
-	    for(int j = 1; j < row-i;j++){
-	        if(leadIndices[j-1] > leadIndices[j]){
+    // // /**
+    // //    sorts matrix rows by lead entries
+    // //    leadIndices is used/exists to avoid looping through to find
+    // //    the lead entry index every comparison
+    // // **/
+    // // public void sort(){
+    // // 	for(int i = 0; i < row-1; i++){
+    // // 	    for(int j = 1; j < row-i;j++){
+		
+    // // 		if(leadIndices[j-1] > leadIndices[j]){
+    // // 		    S
+			ystem.out.println(j+ " " +leadIndices[j-1] + " " + leadIndices[j]);
 		    exchange(j-1,j);
+		    System.out.println(this);
 		}
 	    }
 	}
@@ -249,8 +250,10 @@ public class Gauss{
 
 
     public static void main(String[] args){
+	
 	Scanner scan = new Scanner(System.in);
 	String input;
+	System.out.println(Math.pow(10,-5));
 	System.out.println("Set the space");
 	pause(5);
 	
@@ -282,6 +285,11 @@ public class Gauss{
 	} else{
 	    g.randomMatrix(10);
 	} 
+	System.out.println(g);
+	g.sort();
+	System.out.println(g);
+	
+	/*
 	pause(5);
 	g.fillLeadIndices();
 	System.out.println("\n\n\nOrginal Matrix");
@@ -293,16 +301,17 @@ public class Gauss{
 	System.out.println("\n\n\nReduced Echelon Form");
 	System.out.println(g);
 	System.exit(0);
-
+	
+	*/
 	
 	/*
 	Gauss g = new Gauss(5,5);
 	g.randomMatrix(10);
 	System.out.println(g);
-	g.setCol(2, "0,13,4,2,10,6,0");
+	g.sort();
 	System.out.println(g);
 	g.reduce();
-	System.out.println(g.decForm());
+	System.out.println(g);
 	*/
     }
 }    

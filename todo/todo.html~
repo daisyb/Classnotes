@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	</head>
+	<body>
+		<input type="text" name="newtodo" id="newtodo">
+		<button type="button" id="add">Add</button>
+		<br>
+		To do
+		<ol id="todolist">
+		</ol>
+		Done
+		<ol id="donelist">
+		</ol>
+		<script src="todo.js"></script>
+	</body>
+</html>
