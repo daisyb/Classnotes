@@ -1,16 +1,10 @@
 
 var c = document.getElementById("myCanvas");
-console.log(c);
 var ctx = c.getContext("2d");
 var button = document.getElementById("clear");
+var button2 = document.getElementById("reset");
 
-// ctx.fillStyle = "#0000ff";
-// ctx.fillRect(50,50,100,200);
-			      
-// ctx.beginPath();
-// ctx.arc(200, 300, 50, 0, Math.PI*2);
-// ctx.fill();
-
+/*
 ctx.beginPath();
 ctx.moveTo(250,250);
 ctx.quadraticCurveTo(250,250,400,250);
@@ -18,29 +12,33 @@ ctx.quadraticCurveTo(250,250,200,300);
 //ctx.closePath();
 ctx.stroke();
 ctx.fill();
+*/
 
 var clear = function(e){
     e.preventDefault();
     ctx.clearRect(0,0,500,500);
-    
+    resetPath(e);
 };
-/*
-var draw = function(e){
-    e.preventDefault();
-    //ctx.fillRect(e.offsetX,e.offsetY,100,100);
-    ctx.beginPath();
-    ctx.arc(e.offsetX,e.offsetY,2,0, Math.PI*2);
-    ctx.fill();
-}
-*/
-    ctx.beginPath();
+
+var x,y;
 var dot = function(e){
     e.preventDefault();
-    ctx.lineTo(e.offsetX,e.offsetY);
-    ctx.arc(e.offsetX,e.offsetY,10,0, Math.PI*2);
+    ctx.beginPath()
+    ctx.arc(e.offsetX,e.offsetY,5,0, Math.PI*2);
     ctx.fill();
-    ctx.moveTo(e.offsetX,e.offsetY);
+    ctx.moveTo(x,y);
+    ctx.lineTo(e.offsetX,e.offsetY);
+    ctx.stroke();
+    x=e.offsetX;
+    y=e.offsetY;
 }
-button.addEventListener("click", clear);
-c.addEventListener("click", dot);
 
+var resetPath = function(e){
+    x = undefined;
+    y = undefined;
+}
+
+
+button.addEventListener("click", clear);
+button2.addEventListener("click",resetPath);
+c.addEventListener("click", dot);
