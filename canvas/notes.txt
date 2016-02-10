@@ -1,0 +1,7 @@
+Aim: Your path to success starts here!
+
+A context an keep track of one path at a time.
+
+The path is not drawn until stroke() is called.
+
+A path is considered done when beginPath() is called
