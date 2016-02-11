@@ -5,3 +5,7 @@ A context an keep track of one path at a time.
 The path is not drawn until stroke() is called.
 
 A path is considered done when beginPath() is called
+
+what is the deal with this language what kind is it why don't people know about it
+
+

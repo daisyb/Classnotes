@@ -2,8 +2,10 @@
 var c = document.getElementById("myCanvas");
 var ctx = c.getContext("2d");
 var button = document.getElementById("clear");
+var toggle = document.getElementById("toggle");
 var button2 = document.getElementById("reset");
-
+var mousedown = false;
+var drawmode = true;
 /*
 ctx.beginPath();
 ctx.moveTo(250,250);
@@ -38,7 +40,39 @@ var resetPath = function(e){
     y = undefined;
 }
 
+var draw = function(e){
+    e.preventDefault();
+    if (mousedown){
+	ctx.beginPath();
+	ctx.arc(e.offsetX,e.offsetY,2,0,Math.PI*2);
+	ctx.fill();
+    }
+}
+
+var mouseupdown = function(e){
+    mousedown = !mousedown;
+}
+
+var changeMode = function(e){
+    drawmode = !drawmode;
+    if (drawmode){
+	toggle.innerHTML = "Draw";
+	document.getElementById("mode").innerHTML = "Draw Mode";
+	c.removeEventListener("click",dot);
+	c.addEventListener("mousedown", mouseupdown);
+	c.addEventListener("mouseup", mouseupdown);
+	c.addEventListener("mousemove", draw);
+    } else {
+	toggle.innerHTML = "Dot Lines";
+	c.removeEventListener("mousedown",mouseupdown);
+	c.removeEventListener("mouseup",mouseupdown);
+	c.removeEventListener("mousemove",draw);
+	c.addEventListener("click", dot);	
+    }
+}
+
+changeMode();
 
 button.addEventListener("click", clear);
 button2.addEventListener("click",resetPath);
-c.addEventListener("click", dot);
+toggle.addEventListener("click",changeMode);
