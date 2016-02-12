@@ -1,4 +1,5 @@
 
+
 var c = document.getElementById("myCanvas");
 var ctx = c.getContext("2d");
 var button = document.getElementById("clear");
@@ -56,14 +57,15 @@ var mouseupdown = function(e){
 var changeMode = function(e){
     drawmode = !drawmode;
     if (drawmode){
-	toggle.innerHTML = "Draw";
+	toggle.innerHTML = "Dot Lines";
 	document.getElementById("mode").innerHTML = "Draw Mode";
 	c.removeEventListener("click",dot);
 	c.addEventListener("mousedown", mouseupdown);
 	c.addEventListener("mouseup", mouseupdown);
 	c.addEventListener("mousemove", draw);
     } else {
-	toggle.innerHTML = "Dot Lines";
+	toggle.innerHTML = "Draw";
+	document.getElementById("mode").innerHTML = "Dot Line Mode";
 	c.removeEventListener("mousedown",mouseupdown);
 	c.removeEventListener("mouseup",mouseupdown);
 	c.removeEventListener("mousemove",draw);
