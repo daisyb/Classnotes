@@ -1,0 +1,10 @@
+Why we use requestAnimation frame instead of setInterval
+
+    requestAnimation tells browser to run function before drawing nect frame
+
+    browser attempts to run ~60 frames per second
+
+    lets browser handle when code is executed
+    lets browser stop animation when not in foreground
+
+    lets browse handle all the shit you don't want to deal with
