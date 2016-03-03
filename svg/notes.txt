@@ -1,0 +1,31 @@
+Aim: What's your vector victor?
+
+XML - exstensible markup language
+    - not a formatting language
+    - focuses on storing and representing data
+    - uses tags like html
+    - lightweight
+    
+SVG - Scalable Vector Graphics
+    - SVG is XML based
+    - Vector graphics are images that are not represented as a 2d grid of
+      pixels (raster) but instead as a list of drawing commands (line, circle,
+      rect, etc.)
+    - Scalable without losing definition
+    - the <svg> element is designed to store SVG code:
+
+      	  <svg> xmlns="http://www.w3.org/2000/svg">
+	           SVG CODE
+	  </svg>
+
+	  xmnls identifies the namespace for the xml language being used
+
+creatomg svg elements in js
+	 document.createElementNS(<namespace identifier>, <element>);
+
+	 modify with set attribute calls
+	 	 c1.setAttribute("cx","200");
+
+	 to add element:
+	    var pic = document.getElementById("svg");
+	    pic.appendchild(
