@@ -26,4 +26,7 @@ document.getElementById("right")
 	};
     });
 
+
+
 loadSlide(index);
+
