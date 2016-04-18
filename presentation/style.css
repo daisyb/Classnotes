@@ -1,0 +1,34 @@
+body {
+    Background-color:#36474F;
+    Background-repeat: no-repeat;
+    background-attachment: fixed;
+    Background-position:center center;
+ }
+
+
+
+
+#left{
+    float:left;
+    font-size: 50px;
+    color:white;
+    -webkit-text-stroke-width: 4px;
+    -webkit-text-stroke-color: #4B585C;
+    position: absolute;
+    top:45%;
+    margin-left:5%;
+    cursor:pointer;
+}
+
+#right {
+    float:right;
+    font-size: 50px;
+    color:white;
+    -webkit-text-stroke-width: 4px;
+    -webkit-text-stroke-color: #4B585C;
+    text-outline: 2px 2px black;
+    position: absolute;
+    top:45%;
+    margin-left:90%;
+    cursor:pointer;
+}
