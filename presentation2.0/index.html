@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>LISP Presentation</title>
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" />
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+
+    <div id="title">
+      <h1>LISP</h1>
+      By Daisy Barbanel
+    </div>
+
+    <div id ="main">
+    <h2>What is Lisp?</h2>
+    <p>Originally created in 1958 by John McCarthy, Lisp represents a whole family of languages. Some comonalities you'll see in Lisp based langauges are prefix notation and the use of s-expressions. The name "Lisp" comes from the phrase "List Processing," a reference to the list based structure of the Lisp source code.</p>
+
+    
+    
+    <h2>Setting the Example</h2>
+    <p>Because Lisp is such an old language (the second oldest language still used today, after Fortran) it was an early implementer of many things we take for granted in languages today. Some examples are:
+      <ul>
+	<li>Conditionals (if-then-else)</li>
+	<li>Functions as built-in types</li>
+	<li> Recursion</li>
+	<li>Variables as pointers</li>
+	<li>Garbage Collection</li>
+      </ul>
+    </p>
+
+    
+
+    
+    <p class="quote">"Any sufficiently complicated C or Fortran program contains an ad hoc informally-specified bug-ridden slow implementation of half of Common Lisp."<br> <span>- Philip Greenspun</span></p>
+
+   
+
+    
+    <h2>Well Known Dialects of Lisp</h2>
+    <p>
+      <h4>Common Lisp</h4>
+      <li>Born out of several Lisp offsprings that combined during the 1980's, Common Lisp is the most commonly used dialect of Lisp today. When people refer to writing code in Lisp they are probably talking about Common Lisp.</li>
+      <h4>Clojure</h4>
+      <li>Despite being a realtively new addition to the Lisp family, Clojure has been gaining popularity. It's biggest advantage is that it runs on the Java Virtual Machine, giving access to java libraries.</li>
+      <h4>Scheme</h4>
+      <li>Probably the most commonly used dialect after Common Lisp. Whereas Common Lisp is used in more practical settings, Scheme has a larger academic following and is often used for research. A very minimalist langauge.</li>
+      <h4>Racket</h4>
+      <li>Part of the Scheme family. Intro 1 anyone?</li>
+      <h4>Emacs Lisp</h4>
+      <li>Used in the Emacs text editor. Useful for user customization of Emacs.</li>
+    </p>
+
+   
+    
+    <h2>Example Code</h2>
+    <p> Some example Lisp code:<br>
+      <pre class="snip">
+      (defun null. (x)
+	(eq x '()))
+
+      (defun and. (x y)
+	(cond (x (cond (y 't) ('t '())))
+              ('t '())))
+
+      (defun not. (x)
+	(cond (x '())
+              ('t 't)))
+
+      (defun append. (x y)
+	(cond ((null. x) y)
+              ('t (cons (car x) (append. (cdr x) y)))))
+
+      (defun list. (x y)
+	(cons x (cons y '())))
+
+      (defun pair. (x y)
+	(cond ((and. (null. x) (null. y)) '())
+            ((and. (not. (atom x)) (not. (atom y)))
+             (cons (list. (car x) (car y))
+                    (pair. (cdr x) (cdr y))))))
+
+      (defun assoc. (x y)
+	(cond ((eq (caar y) x) (cadar y))
+              ('t (assoc. x (cdr y)))))
+
+      (defun eval. (e a)
+	(cond
+          ((atom e) (assoc. e a))
+	  ((atom (car e))
+	   (cond
+	     ((eq (car e) 'quote) (cadr e))
+	     ((eq (car e) 'atom)  (atom   (eval. (cadr e) a)))
+	     ((eq (car e) 'eq)    (eq     (eval. (cadr e) a)
+                                          (eval. (caddr e) a)))
+   	     ((eq (car e) 'car)   (car    (eval. (cadr e) a)))
+	     ((eq (car e) 'cdr)   (cdr    (eval. (cadr e) a)))
+	     ((eq (car e) 'cons)  (cons   (eval. (cadr e) a)
+                                          (eval. (caddr e) a)))
+	     ((eq (car e) 'cond)  (evcon. (cdr e) a))
+	     ('t (eval. (cons (assoc. (car e) a)
+                              (cdr e))
+                        a))))
+	((eq (caar e) 'label)
+	 (eval. (cons (caddar e) (cdr e))
+                (cons (list. (cadar e) (car e)) a)))
+	((eq (caar e) 'lambda)
+	 (eval. (caddar e)
+                (append. (pair. (cadar e) (evlis. (cdr e) a))
+                         a)))))
+
+     (defun evcon. (c a)
+	(cond ((eval. (caar c) a)
+               (eval. (cadar c) a))
+              ('t (evcon. (cdr c) a))))
+
+     (defun evlis. (m a)
+	(cond ((null. m) '())
+              ('t (cons (eval.  (car m) a)
+                        (evlis. (cdr m) a)))))</pre>
+      <a href="http://ep.yimg.com/ty/cdn/paulgraham/jmc.lisp" style="font-size:10px">(Source)</a><br><br>
+      This code shows basic Lisp functions written in Lisp. An important part of the design of Lisp is that it is built upon itself allowing for the langauge and its dialects to be far more mutable than others.</p>
+
+    
+    
+    <h2>Pros of using Lisp</h2>
+    <p><h4>Abstraction</h4>
+      <li>Because Lisp's underlying structure is similar to the language itself it is easy for a program to manipulate and customize the language.</li>
+      <h4>Macros</h4>
+      <li>A big part of Lisp is <a href="https://en.wikipedia.org/wiki/Macro_(computer_science)">macros</a> or input patterns that can be defined by the user and then evaluated at run time. This tool allows Lisp to be a very extensible language that can easily be customized to fit a programmer's needs.</li>
+      <h4> Expressiveness </h4>
+      <li>All code is written in simple list based expressions meaning that written code is more likely to be consise, precise, and flexible.</li>
+    </p>
+
+
+    
+    <p class="quote">"Lisp is a programmable programming language" - John Foderaro</p>
+
+  
+
+    <h2>Cons of using Lisp</h2>
+    <p>
+      <h4>Lack of Libraries</h4>
+      <li>Because Lisp-based languages are not incredibly popular there are significantly less libraries than some of the more "main stream" languages.</li>
+      <h4>Readability</h4>
+      <li>Especially for someone just getting into the language, parenthesis based expressions and prefix notation can make code difficult to read. This can cause complications when debugging and sharing code with others. Likewise customizations through macros can make it difficult to undestand someone else's code</li>
+      <h4>Learning Curve</h4>
+      <li>Lisp is known to have a somewhat steep learning curve. It often takes a while for new lisp programmers to get a handle on some of the more advanced features of Lisp that make it unique.</li>
+    </p>
+    <p class="quote">"Lisp is worth learning for the profound enlightenment you will experience when you finally get it; that experience will make you a better programmer for the rest of your days, even if you never actually use Lisp a lot" - Eric S Raymond</p>
+    </div>
+  </body>
+</html>
