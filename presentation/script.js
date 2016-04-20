@@ -13,8 +13,10 @@ document.getElementById("left")
     .addEventListener("click", function(e){
 	if (index > 1){
 	    index--;
-	    loadSlide(index);
-	};
+	} else {
+	    index = 7;
+	}
+	loadSlide(index);	
     });
 
 
@@ -22,8 +24,10 @@ document.getElementById("right")
     .addEventListener("click", function(e){
 	if (index < 7){
 	    index++;
-	    loadSlide(index);
-	};
+	} else {
+	    index = 1;
+	}
+	loadSlide(index);
     });
 
 
